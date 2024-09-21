@@ -1,0 +1,46 @@
+name: flutter_book_reader
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_inappwebview: ^6.0.0
+  path: 
+  path_provider: 
+  flutter_bloc:
+  get_it: 
+  url_launcher: 
+  file_picker: 
+  share_plus:
+  archive: 
+  enough_convert: 
+  dart_pdf_reader:
+  simplytranslate: 
+  pdfrx: ^1.0.83
+  flutter_tts: ^4.0.2
+  deepgram_speech_to_text: ^2.3.2
+  just_audio: ^0.9.40
+  envied: ^0.5.4+1
+  just_audio_windows:
+  just_audio_mpv:
+  just_audio_background:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  envied_generator: ^0.5.4+1
+  build_runner: ^2.4.12
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
