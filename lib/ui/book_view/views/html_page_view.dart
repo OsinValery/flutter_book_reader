@@ -121,14 +121,14 @@ class _HtmlBasedPageContentState extends State<HtmlBasedPageContent> {
             context.read<BookViewBloc>().add(ReadTextEvent(text, isPage: true));
           }
         } else if (state is PageState) {
+          String finalUrl = "file://${state.page.content}";
           if (webViewController == null) {
             needDrawPage = true;
-            rememberUrlWhileLoadPage = "file://${state.page.content}";
+            rememberUrlWhileLoadPage = finalUrl;
           } else {
             await InAppWebViewController.clearAllCache();
             webViewController?.loadUrl(
-                urlRequest:
-                    URLRequest(url: WebUri("file://${state.page.content}")));
+                urlRequest: URLRequest(url: WebUri(finalUrl)));
             if (pageKey.isNotEmpty && pageKey != state.bookId.toString()) {
               pageKey = state.bookId.toString();
               webViewController?.clearHistory();

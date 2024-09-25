@@ -30,7 +30,7 @@ class _PageContentState extends State<PageContent> {
           currentPageType = viewType;
           switch (currentPageType) {
             case PageType.html:
-              if (Platform.isAndroid || Platform.isIOS) {
+              if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
                 curView = const HtmlBasedPageContent();
               } else {
                 var platform = Platform.operatingSystem;
