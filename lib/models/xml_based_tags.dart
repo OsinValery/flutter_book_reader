@@ -129,6 +129,32 @@ class FB2Tag extends XmlTag {
       ..attr = {...attr};
   }
 
+  void groupEpigraphs() {
+    List<FB2Tag> tags = [];
+    List<FB2Tag> epigrephs = [];
+
+    for (var child in content.cast<FB2Tag>()) {
+      if (child.tag == "epigraph") {
+        epigrephs.add(child);
+      } else if (epigrephs.isEmpty) {
+        tags.add(child);
+      } else {
+        tags.add(FB2Tag()
+          ..tag = "epigraphs_group"
+          ..content = epigrephs);
+        epigrephs = [];
+        tags.add(child);
+      }
+    }
+
+    if (epigrephs.isNotEmpty) {
+      tags.add(FB2Tag()
+        ..tag = "epigraphs_group"
+        ..content = epigrephs);
+    }
+    content = tags;
+  }
+
   String getHtml() {
     var arguments = "";
     attr.forEach((key, value) => arguments += ' $key="$value"');
@@ -188,8 +214,11 @@ class FB2Tag extends XmlTag {
       return "<div$arguments>$childrenHtml</div>";
     } else if (tag == "poem") {
       return "<div class=\"poem\"$arguments> $childrenHtml </div>";
+    } else if (tag == "epigraphs_group") {
+      const style = "box-sizing:border-box;width:50%;margin-left:auto";
+      return "<div style=\"width:99%\"><div style=\"$style\">$childrenHtml</div></div><br clear=\"all\">";
     } else if (tag == "epigraph") {
-      return '<table border="0" align="right"><tr><td> $childrenHtml </td></tr></table><br clear="all">';
+      return childrenHtml;
     } else {
       return "<$tag$arguments> $childrenHtml </$tag>";
     }

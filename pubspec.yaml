@@ -14,7 +14,7 @@ dependencies:
   path: 
   path_provider: 
   flutter_bloc:
-  get_it: 
+  get_it: ^8.0.0
   url_launcher: 
   file_picker: 
   share_plus:

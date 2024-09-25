@@ -65,8 +65,6 @@ Future main() async {
   var strings = [
     "problems:",
     "1) select language, voice for tts, use https://pub.dev/packages/flutter_langdetect",
-    "6) fb2 epigraph пофиксить выравнивание в строках разной длинны и эпиграфах из 2 стихов"
-        "and table created borders (remove it)",
     "12) add file drag and drop",
     "13) epub supports pdf pages",
     "14) epub supports encryption",

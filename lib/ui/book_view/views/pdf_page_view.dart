@@ -31,6 +31,11 @@ class _PdfViewPageState extends State<PdfViewPage> {
               pageNumber: state.page.number + 1,
               backgroundColor: Colors.transparent,
               decorationBuilder: (context, pageSize, page, pageImage) {
+                page.loadText().then(
+                  (value) {
+                    print(value.fragments);
+                  },
+                );
                 return Container(
                   margin: const EdgeInsets.all(0),
                   width: pdfWidgetSize.width,

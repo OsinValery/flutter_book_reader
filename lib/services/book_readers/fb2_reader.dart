@@ -51,6 +51,7 @@ final class Fb2BookReaderV2 extends Fb2BookReader {
 
       // split chapters on pages
       for (var chapter in chapters) {
+        (chapter as FB2Tag).groupEpigraphs();
         var (chapterPages, _) =
             chapter.splitTagOnPages(BookReadingPreparator.prefferedPageLength);
         for (FB2Tag chapterPage in chapterPages.cast()) {
