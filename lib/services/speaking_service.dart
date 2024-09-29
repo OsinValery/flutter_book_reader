@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:io";
 import 'dart:typed_data';
 import 'dart:math' show Random, pow;
 
@@ -47,6 +48,19 @@ final class SystemSpeaker implements SpeakingService {
   SystemSpeaker() {
     _speaker.setCompletionHandler(__onCompleted);
     _speaker.setStartHandler(() => _state = TtsState.playing);
+
+    if (Platform.isIOS) {
+      _speaker.setIosAudioCategory(
+          IosTextToSpeechAudioCategory.playback,
+          [
+            IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+            IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+            IosTextToSpeechAudioCategoryOptions.mixWithOthers,
+            IosTextToSpeechAudioCategoryOptions.duckOthers,
+            IosTextToSpeechAudioCategoryOptions.allowAirPlay,
+          ],
+          IosTextToSpeechAudioMode.voicePrompt);
+    }
   }
 
   void __onCompleted() {
